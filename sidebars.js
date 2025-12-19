@@ -44,6 +44,16 @@ const sidebars = {
           type: 'doc',
           id: 'part-02-ros2/chapter-4',
           label: 'Chapter 4: Building ROS 2 Packages'
+        },
+        {
+          type: 'doc',
+          id: 'part-02-ros2/chapter-5',
+          label: 'Chapter 5: Bridging AI to Robot Control'
+        },
+        {
+          type: 'doc',
+          id: 'part-02-ros2/chapter-6',
+          label: 'Chapter 6: Robot Description with URDF'
         }
       ],
     },
