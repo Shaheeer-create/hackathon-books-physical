@@ -1,7 +1,7 @@
 // @ts-check
-// `@type` JSDoc annotations allow editor autocompletion and type checking
-
 import { themes as prismThemes } from 'prism-react-renderer';
+
+const isVercel = process.env.VERCEL === '1';
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
@@ -13,22 +13,23 @@ const config = {
     v4: true,
   },
 
-  url: process.env.DEPLOYMENT_ENV === 'vercel' ? 'https://hackathon-books-physical.vercel.app' : 'https://shaheer-create.github.io',
-  baseUrl: process.env.DEPLOYMENT_ENV === 'vercel' ? '/' : '/physical-ai-textbook/',
+  // 🌍 DEPLOYMENT-AWARE CONFIG
+  url: isVercel
+    ? 'https://hackathon-books-physical.vercel.app'
+    : 'https://shaheer-create.github.io',
 
+  baseUrl: isVercel ? '/' : '/physical-ai-textbook/',
+
+  // 🧠 KEEP OLD GITHUB PAGES METADATA
   organizationName: 'Shaheer-Create',
   projectName: 'physical-ai-textbook',
   deploymentBranch: 'gh-pages',
 
   onBrokenLinks: 'throw',
+
   markdown: {
     format: 'mdx',
     mermaid: true,
-    mdx1Compat: {
-      comments: true,
-      admonitions: true,
-      headingIds: true,
-    },
     hooks: {
       onBrokenMarkdownLinks: 'warn',
     },
@@ -36,115 +37,73 @@ const config = {
 
   i18n: {
     defaultLocale: 'en',
-    locales: ['en', 'ur'], // Urdu-ready
+    locales: ['en', 'ur'],
   },
 
   presets: [
     [
       'classic',
-      /** @type {import('@docusaurus/preset-classic').Options} */
-      ({
+      {
         docs: {
           sidebarPath: './sidebars.js',
-          routeBasePath: '/', // 📘 Docs at root (TEXTBOOK MODE)
+
+          // 📘 TEXTBOOK MODE (KEEP OLD BEHAVIOR)
+          routeBasePath: '/',
+
           editUrl:
-            'https://github.com/Shaheer-Create/physical-ai-textbook/edit/main/physical-ai-textbook/',
+            'https://github.com/Shaheer-Create/physical-ai-textbook/edit/main/',
         },
-        blog: false, // ❌ Disable blog (TEXTBOOK)
+
+        blog: false,
+
         theme: {
           customCss: './src/css/custom.css',
         },
-      }),
+      },
     ],
   ],
 
-  // 🖼️ Image optimization
-  plugins: [
-    '@docusaurus/plugin-ideal-image',
-  ],
+  plugins: ['@docusaurus/plugin-ideal-image'],
 
-  themeConfig:
-    /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
-    ({
-      image: 'img/docusaurus-social-card.jpg',
+  themeConfig: {
+    image: 'img/docusaurus-social-card.jpg',
 
-      colorMode: {
-        respectPrefersColorScheme: true,
+    colorMode: {
+      respectPrefersColorScheme: true,
+    },
+
+    navbar: {
+      title: 'Physical AI Textbook',
+      logo: {
+        alt: 'Physical AI Logo',
+        src: 'img/logo.svg',
       },
-
-      navbar: {
-        title: 'Physical AI Textbook',
-        logo: {
-          alt: 'Physical AI & Humanoid Robotics Logo',
-          src: 'img/logo.svg',
+      items: [
+        {
+          type: 'docSidebar',
+          sidebarId: 'textbookSidebar',
+          label: 'Textbook',
+          position: 'left',
         },
-        items: [
-          {
-            type: 'docSidebar',
-            sidebarId: 'textbookSidebar',
-            label: 'Textbook',
-            position: 'left',
-          },
-          {
-            href: 'https://github.com/Shaheer-Create/physical-ai-textbook',
-            label: 'GitHub',
-            position: 'right',
-          },
-        ],
-      },
+        {
+          href: 'https://github.com/Shaheer-Create/physical-ai-textbook',
+          label: 'GitHub',
+          position: 'right',
+        },
+      ],
+    },
 
-      footer: {
-        style: 'dark',
-        links: [
-          {
-            title: 'Textbook',
-            items: [
-              {
-                label: 'Part 1: Foundations',
-                to: '/part-01-foundations/chapter-1',
-              },
-              {
-                label: 'Part 2: ROS 2',
-                to: '/part-02-ros2/chapter-3',
-              },
-              {
-                label: 'Part 3: Simulation',
-                to: '/part-03-simulation/chapter-7',
-              },
-            ],
-          },
-          {
-            title: 'Community',
-            items: [
-              {
-                label: 'Discord',
-                href: 'https://discord.gg/robotics',
-              },
-              {
-                label: 'Robotics Stack Exchange',
-                href: 'https://robotics.stackexchange.com/',
-              },
-            ],
-          },
-          {
-            title: 'More',
-            items: [
-              {
-                label: 'GitHub',
-                href: 'https://github.com/Shaheer-Create/physical-ai-textbook',
-              },
-            ],
-          },
-        ],
-        copyright: `Copyright © ${new Date().getFullYear()} Physical AI & Humanoid Robotics Textbook.`,
-      },
+    footer: {
+      style: 'dark',
+      copyright: `Copyright © ${new Date().getFullYear()} Physical AI & Humanoid Robotics Textbook.`,
+    },
 
-      prism: {
-        theme: prismThemes.github,
-        darkTheme: prismThemes.dracula,
-        additionalLanguages: ['python', 'bash', 'json', 'yaml'],
-      },
-    }),
+    prism: {
+      theme: prismThemes.github,
+      darkTheme: prismThemes.dracula,
+      additionalLanguages: ['python', 'bash', 'json', 'yaml'],
+    },
+  },
 };
 
 export default config;
