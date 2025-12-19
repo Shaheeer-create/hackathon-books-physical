@@ -3890,4 +3890,7 @@ The chapter emphasized safety-first development practices essential for humanoid
 
 ## Cross-references
 
-For foundational concepts about Physical AI, see [Chapter 1: Introduction to Physical AI](../part-01-foundations/chapter-1). For related systems, see [Chapter 10: NVIDIA Isaac Platform Overview](../part-04-isaac/chapter-10) and [Chapter 15: Cognitive Planning with LLMs](../part-05-vla/chapter-15). For safety considerations in robotics, also see [Chapter 14: Safety and Compliance](../part-06-capstone/chapter-14) if available.
+For foundational concepts about Physical AI, see [Chapter 1: Introduction to Physical AI](../part-01-foundations/chapter-1).
+For related systems, see [Chapter 10: NVIDIA Isaac Platform Overview](../part-04-isaac/chapter-10)
+and [Chapter 15: Cognitive Planning with LLMs](../part-05-vla/chapter-15).
+For safety considerations in robotics, see [Chapter 19: System Integration and Testing](./chapter-19).
