@@ -13,11 +13,12 @@ const config = {
     v4: true,
   },
 
-  url: 'https://shaheer-create.github.io',
-  baseUrl: '/physical-ai-textbook/',
+  url: process.env.DEPLOYMENT_ENV === 'vercel' ? 'https://hackathon-books-physical.vercel.app' : 'https://shaheer-create.github.io',
+  baseUrl: process.env.DEPLOYMENT_ENV === 'vercel' ? '/' : '/physical-ai-textbook/',
 
   organizationName: 'Shaheer-Create',
   projectName: 'physical-ai-textbook',
+  deploymentBranch: 'gh-pages',
 
   onBrokenLinks: 'throw',
   markdown: {
